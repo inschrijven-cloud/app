@@ -36,5 +36,9 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [],
+  "scripts": {
+    "preinstall": "npm run typings",
+    "typings": "rm -rf typings; typings install; mv typings/index.d.ts typings/main.d.ts"
+  }
 }

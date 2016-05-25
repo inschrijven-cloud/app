@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
+import IPouchDB = pouchDB.IPouchDB;
 
-declare var PouchDB:any;
 
 @Injectable()
 export class ChildService {
-  db:any;
+  db:IPouchDB;
   remote:string = 'http://localhost:5984/test-children';
   data:Array<any> = [];
 
@@ -42,7 +42,7 @@ export class ChildService {
 
   deleteChild(id:string) {
     this.db.get(id).then((obj) => {
-      obj.id = 'type/child/v1/deleted';
+      obj._id = 'type/child/v1/deleted';
       this.db.put(obj);
     })
   }
