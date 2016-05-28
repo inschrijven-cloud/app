@@ -66,7 +66,17 @@ gulp.task('build', ['clean'], function(done){
 gulp.task('sass', buildSass);
 gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
-gulp.task('scripts', copyScripts);
+gulp.task('scripts', function () {
+  return copyScripts({
+    src: [
+      'node_modules/es6-shim/es6-shim.min.js',
+      'node_modules/zone.js/dist/zone.js',
+      'node_modules/reflect-metadata/Reflect.js',
+      'node_modules/pouchdb/dist/pouchdb.js'
+    ]
+  });
+});
+
 gulp.task('clean', function(){
   return del('www/build');
 });
