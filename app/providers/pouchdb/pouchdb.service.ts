@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
+import {Map} from "immutable";
 import IPouchDB = pouchDB.IPouchDB;
 
 @Injectable()
 export class PouchDBService {
-  databases: Immutable.Map<string, IPouchDB> = Immutable.Map();
+  databases: Map<string, IPouchDB> = Map<string, IPouchDB>();
 
   getDb(name: string) {
     if (!this.databases.get(name)) {

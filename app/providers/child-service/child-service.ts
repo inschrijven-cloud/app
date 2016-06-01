@@ -41,13 +41,14 @@ export class ChildService {
 
   deleteChild(id: string) {
     this.db.get(id).then((obj) => {
-      obj._id = "type/child/v1/deleted";
-      this.db.put(obj);
+      let res: any = obj;
+      res._id = "type/child/v1/deleted";
+      this.db.put(res);
     });
   }
 
   insertChild(child: any): Promise<any> {
-    this.db.put(child);
+    return this.db.put(child);
   }
 
 }
