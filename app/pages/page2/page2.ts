@@ -1,14 +1,14 @@
-import {Page} from 'ionic-angular';
+import {Page} from "ionic-angular";
 import {ChildService} from "../../providers/child-service/child-service";
 
 
 @Page({
-  templateUrl: 'build/pages/page2/page2.html',
+  templateUrl: "build/pages/page2/page2.html",
   providers: [ChildService],
 })
 export class Page2 {
   children: any[] = [];
-  searchQuery: string = '';
+  searchQuery: string = "";
   _childService: ChildService;
 
   constructor(_childService: ChildService) {
@@ -17,7 +17,7 @@ export class Page2 {
   }
 
   getItems() {
-    var startTime = new Date();
+    let startTime = new Date();
 
     this._childService
       .findByName(this.searchQuery)
@@ -29,3 +29,4 @@ export class Page2 {
   }
 
 }
+

@@ -1,11 +1,11 @@
-import {App, Platform} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs/tabs';
+import {App, Platform} from "ionic-angular";
+import {StatusBar} from "ionic-native";
+import {TabsPage} from "./pages/tabs/tabs";
 import {PouchDBService} from "./providers/pouchdb/pouchdb.service";
 
 
 @App({
-  template: '<ion-nav [root]="rootPage"></ion-nav>',
+  template: `<ion-nav [root]="rootPage"></ion-nav>`,
   config: {}, // http://ionicframework.com/docs/v2/api/config/Config/,
   providers: [PouchDBService]
 })
@@ -20,3 +20,4 @@ export class MyApp {
     });
   }
 }
+
