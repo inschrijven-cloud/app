@@ -17,6 +17,7 @@ module.exports = function(config) {
       'node_modules/zone.js/dist/jasmine-patch.js',
       'node_modules/zone.js/dist/async-test.js',
       'node_modules/zone.js/dist/fake-async-test.js',
+      'node_modules/pouchdb/dist/pouchdb.js',
       'app/**/*.spec.ts',
       {pattern: 'node_modules/reflect-metadata/Reflect.js.map', included: false, served: true}, // 404 on the same
       {pattern: 'www/build/**/*.html', included: false},
