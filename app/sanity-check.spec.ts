@@ -1,7 +1,6 @@
-describe("universal truths", () => {
+describe("sanity check", () => {
   it("should do math", () => {
     expect(1 + 1).toEqual(2);
-
     expect(5).toBeGreaterThan(4);
   });
 
@@ -9,4 +8,3 @@ describe("universal truths", () => {
     expect(4).toEqual(40);
   });
 });
-
