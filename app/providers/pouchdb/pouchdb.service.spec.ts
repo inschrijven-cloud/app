@@ -1,4 +1,5 @@
 import {PouchDBService} from "./pouchdb.service";
+
 describe("PouchDB service", () => {
   it("should cache databases", () => {
     const pouchDbService = new PouchDBService();

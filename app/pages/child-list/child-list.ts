@@ -1,12 +1,12 @@
-import {Page} from "ionic-angular";
+import {Component} from "@angular/core";
 import {ChildService} from "../../providers/child-service/child-service";
 
 
-@Page({
-  templateUrl: "build/pages/page2/page2.html",
+@Component({
+  templateUrl: "build/pages/child-list/child-list.html",
   providers: [ChildService],
 })
-export class Page2 {
+export class ChildListPage {
   children: any[] = [];
   searchQuery: string = "";
   _childService: ChildService;
@@ -28,5 +28,5 @@ export class Page2 {
       .catch(e => console.error(e));
   }
 
-}
 
+}
