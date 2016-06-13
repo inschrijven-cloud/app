@@ -7,7 +7,7 @@
 <ion-content class="page2">
   <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let child of children">
+    <ion-item *ngFor="let child of children" (click)="childDetails(child)">
       {{ child.firstName }} {{ child.lastName }}
     </ion-item>
   </ion-list>

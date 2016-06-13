@@ -21,7 +21,7 @@ export class Child {
 
     this.birthDate = obj.birthDate;
     
-    //this.attendances = obj.attendances.map(row => new Attendance(<string>row))
+    //this.attendances = obj.attendances.map(row => new Attendance(<string>row)) // TODO currently not in DB
   }
 
   _id: string;
