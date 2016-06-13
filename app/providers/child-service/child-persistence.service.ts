@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
 import IPouchDB = pouchDB.IPouchDB;
+import {Child} from "../../models/child.model";
 
 @Injectable()
-export class ChildService {
+export class ChildPersistenceService {
   db: IPouchDB;
   remote: string = "http://localhost:5984/test-children";
-  data: Array<any> = [];
-
 
   constructor() {
     this.db = new PouchDB("some-db");
@@ -21,22 +20,11 @@ export class ChildService {
     this.db.sync(this.remote, options);
   }
 
-  getAll(): Promise<Array<any>> {
+  getAll(): Promise<Array<Child>> {
     return this.db
       .query("child/all")
-      .then(result => result.rows.map(row => row.value));
-  }
-
-  findByName(name: string, limit: number = 25): Promise<any> {
-    name = name || "";
-
-    return this
-      .getAll()
-      .then((res) => {
-        return res.filter((row) => {
-          return (row.firstName + " " + row.lastName).toLowerCase().indexOf(name.toLowerCase()) !== -1; // TODO check if this works with strict equality
-        });
-      });
+      .then(result => result.rows.map(row => row.value))
+      .then(rows => rows.map(row => new Child(row)));
   }
 
   deleteChild(id: string) {
@@ -47,9 +35,8 @@ export class ChildService {
     });
   }
 
-  insertChild(child: any): Promise<any> {
+  insertChild(child: Child): Promise<any> {
     return this.db.put(child);
   }
 
 }
-

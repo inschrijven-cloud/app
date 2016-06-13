@@ -1,10 +1,9 @@
 import {Component} from "@angular/core";
-import {ChildService} from "../../providers/child-service/child-service";
+import {ChildService} from "../../providers/child-service/child.service";
 
 
 @Component({
   templateUrl: "build/pages/child-list/child-list.html",
-  providers: [ChildService],
 })
 export class ChildListPage {
   children: any[] = [];
