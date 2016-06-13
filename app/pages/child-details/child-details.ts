@@ -14,7 +14,6 @@ export class ChildDetailsPage {
 
   ionViewWillEnter() {
     this.child = this.navParams.get("selectedChild");
-    console.log(this.child);
   }
 
   goBack() {
