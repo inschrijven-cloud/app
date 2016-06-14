@@ -5,6 +5,7 @@ import {Child} from "../../models/child.model";
 import {ChildDetailsPage} from "../child-details/child-details";
 import {BehaviorSubject} from "rxjs/Rx";
 import {FilterChildrenPipe} from "../../pipes/FilterChildren.pipe";
+import {ChildCreatePage} from "../child-create/child-create";
 
 @Component({
   templateUrl: "build/pages/child-list/child-list.html",
@@ -21,4 +22,7 @@ export class ChildListPage {
     this.navController.push(ChildDetailsPage, { selectedChild: child });
   }
 
+  goToCreateChild() {
+    this.navController.push(ChildCreatePage);
+  }
 }

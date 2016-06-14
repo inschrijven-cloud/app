@@ -5,6 +5,7 @@ import {CrewDetailsPage} from "../crew-details/crew-details";
 import {Crew} from "../../models/crew.model";
 import {BehaviorSubject} from "rxjs/Rx";
 import {FilterCrewPipe} from "../../pipes/FilterCrew.pipe";
+import {CrewCreatePage} from "../crew-create/crew-create";
 
 @Component({
   templateUrl: "build/pages/crew-list/crew-list.html",
@@ -19,5 +20,9 @@ export class CrewListPage {
 
   crewDetails(person: Crew) {
     this.navController.push(CrewDetailsPage, { selectedPerson: person });
+  }
+
+  goToCreateCrew() {
+    this.navController.push(CrewCreatePage);
   }
 }
