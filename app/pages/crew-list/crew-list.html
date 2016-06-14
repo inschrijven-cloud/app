@@ -2,8 +2,8 @@
   <ion-title>Animatoren</ion-title>
 </ion-navbar>
 
+<ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
 <ion-content padding class="crew-list">
-  <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let person of crew" (click)="crewDetails(person)">
       {{ person.firstName }} {{ person.lastName }}

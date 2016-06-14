@@ -1,11 +1,9 @@
 <ion-navbar *navbar>
-  <ion-title>
-    Tab 2
-  </ion-title>
+  <ion-title>Kinderen</ion-title>
 </ion-navbar>
 
-<ion-content class="page2">
-  <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
+<ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
+<ion-content padding class="child-list">
   <ion-list>
     <ion-item *ngFor="let child of children" (click)="childDetails(child)">
       {{ child.firstName }} {{ child.lastName }}

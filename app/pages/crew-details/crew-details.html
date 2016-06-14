@@ -38,8 +38,14 @@
     <em>Geen emailgegevens opgegeven.</em>
   </p>
 
-  <button (click)="goBack()">Go Back</button>
-  <button (click)="toggleDebug()">Extra informatie</button>
+  <button (click)="goBack()">
+    <ion-icon name="arrow-back"></ion-icon>
+    Terug
+  </button>
+  <button (click)="toggleDebug()" secondary>
+    <ion-icon name="information"></ion-icon>
+    Extra informatie
+  </button>
 
   <div *ngIf="showDebug">
     <hr/>
