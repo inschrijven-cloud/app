@@ -9,7 +9,7 @@ import {ChildDetailsPage} from "../child-details/child-details";
   templateUrl: "build/pages/child-list/child-list.html",
 })
 export class ChildListPage {
-  children: any[] = [];
+  children: Child[] = [];
   searchQuery: string = "";
   _childService: ChildService;
 

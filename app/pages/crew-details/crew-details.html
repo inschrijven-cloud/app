@@ -1,0 +1,49 @@
+<ion-navbar *navbar>
+  <ion-title *ngIf="person">{{ person.firstName }} {{ person.lastName }}</ion-title>
+</ion-navbar>
+
+<ion-content padding class="crew-details" *ngIf="person">
+  <h3>Adres</h3>
+  <p *ngIf="person.address">
+    {{ person.address.street }} {{ person.address.number }}<br/>
+    {{ person.address.zipCode }} {{ person.address.city }}
+  </p>
+  <p *ngIf="!person.address">
+    <em>Geen adres opgegeven.</em>
+  </p>
+
+  <h3>Contactgegevens</h3>
+
+  <h4>Telefoon</h4>
+
+  <ul *ngIf="person.contact.phone.length !== 0">
+    <li *ngFor="let phoneContact of person.contact.phone">
+      {{ phoneContact.phoneNumber }} ({{ phoneContact.kind }})
+    </li>
+  </ul>
+
+  <p *ngIf="person.contact.phone.length === 0">
+    <em>Geen telefoongegevens opgegeven.</em>
+  </p>
+
+  <h4>Email</h4>
+
+  <ul *ngIf="person.contact.email.length !== 0">
+    <li *ngFor="let email of person.contact.email">
+      {{ email }}
+    </li>
+  </ul>
+
+  <p *ngIf="person.contact.email.length === 0">
+    <em>Geen emailgegevens opgegeven.</em>
+  </p>
+
+  <button (click)="goBack()">Go Back</button>
+  <button (click)="toggleDebug()">Extra informatie</button>
+
+  <div *ngIf="showDebug">
+    <hr/>
+    <p>_id: {{ person._id }}</p>
+    <p>_rev: {{ person._rev }}</p>
+  </div>
+</ion-content>

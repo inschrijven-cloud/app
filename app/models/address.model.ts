@@ -1,11 +1,11 @@
 export class Address {
   constructor(obj: any) {
-    this.street = obj.street;
-    this.number = obj.number;
-    this.city = obj.city;
-    this.zipCode = obj.zipCode;
+    if(obj.street) this.street = obj.street;
+    if(obj.number) this.number = obj.number;
+    if(obj.city) this.city = obj.city;
+    if(obj.zipCode) this.zipCode = obj.zipCode;
   }
-  
+
   street: string;
   number: string;
   zipCode: number;

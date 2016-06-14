@@ -5,9 +5,9 @@ import IPouchDB = pouchDB.IPouchDB;
 
 @Injectable()
 export class PouchDBService {
-  databases: Map<string, IPouchDB> = Map<string, IPouchDB>();
+  private databases: Map<string, IPouchDB> = Map<string, IPouchDB>();
 
-  getDb(name: string) {
+  getDb(name: string): IPouchDB {
     if (!this.databases.get(name)) {
       this.databases = this.databases.set(name, new PouchDB(name));
     }
