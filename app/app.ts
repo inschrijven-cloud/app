@@ -4,13 +4,12 @@ import {StatusBar} from "ionic-native";
 import {TabsPage} from "./pages/tabs/tabs";
 import {PouchDBService} from "./providers/pouchdb/pouchdb.service";
 import {ChildService} from "./providers/child-service/child.service";
-import {ChildPersistenceService} from "./providers/child-service/child-persistence.service";
 import {CrewService} from "./providers/crew/crew.service";
 
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`,
-  providers: [PouchDBService, ChildService, ChildPersistenceService, CrewService],
+  providers: [PouchDBService, ChildService, CrewService],
 })
 export class MyApp {
 

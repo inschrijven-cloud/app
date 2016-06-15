@@ -8,22 +8,17 @@ import {Crew} from "../../models/crew.model";
   templateUrl: 'build/pages/crew-list/crew-list.html',
 })
 export class CrewListPage {
-  public crew: Crew[] = [];
+  public crew: Array<Crew> = [];
 
   constructor(private crewService: CrewService, private navController: NavController) {
     this.getItems();
   }
 
   getItems() {
-    const startTime = new Date();
-
+    this.crew = this.crewService.getAll().getValue();
     this.crewService
       .getAll()
-      .then(res => {
-        console.log(`took ${new Date().getTime() - startTime.getTime()}ms to get crew`);
-        this.crew = res;
-      })
-      .catch(e => console.error(e));
+      .subscribe((res) => this.crew = res, (e) => console.error(e));
   }
 
   crewDetails(person: Crew) {

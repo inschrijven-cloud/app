@@ -15,6 +15,8 @@ export class Crew {
     this.contact = new Contact(obj.contact);
   }
 
+  static type: string = "type/crew/v1";
+  
   _id: string;
   _rev: string;
 

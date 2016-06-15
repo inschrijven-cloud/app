@@ -2,7 +2,7 @@
   <ion-title>Kinderen</ion-title>
 </ion-navbar>
 
-<ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
+<ion-searchbar [ngFormControl]="searchQuery"></ion-searchbar>
 <ion-content padding class="child-list">
   <ion-list>
     <ion-item *ngFor="let child of children" (click)="childDetails(child)">

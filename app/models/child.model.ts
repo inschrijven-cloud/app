@@ -23,6 +23,8 @@ export class Child {
     
     //this.attendances = obj.attendances.map(row => new Attendance(<string>row)) // TODO currently not in DB
   }
+  
+  static type: string = "type/child/v1";
 
   _id: string;
   _rev: string;
