@@ -17,7 +17,7 @@ export class PouchDBService {
       console.log("Starting PouchDB syncing...");
       const remote:string = "http://localhost:5984/test-children";
       this.databases.get(name).replicate
-        .from(remote, {live: true, retry: true, continuous: true})
+        .from(remote, {live: true, retry: true })
         .on("complete", () => console.log("Syncing PouchDB with remote complete"))
         .on("error", (e) => console.error("Error syncing with remote: ", e))
         .on("change", (change) => console.log("Syncing PouchDB: change detected"))
