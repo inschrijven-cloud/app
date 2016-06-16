@@ -26,7 +26,7 @@ export class PouchDBService {
         .on("active", () => subject.next("active"))
         .on("error", (e) => {
           subject.next("error");
-          console.error("Error syncing with remote: ", e)
+          console.error("Error syncing with remote: ", e);
         })
         .on("denied", (e) => {
           subject.next("denied");
