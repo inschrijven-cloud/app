@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController, NavParams} from "ionic-angular";
 import {Child} from "../../models/child.model";
 
 @Component({
-  templateUrl: 'build/pages/child-details/child-details.html',
+  templateUrl: "build/pages/child-details/child-details.html",
 })
 export class ChildDetailsPage {
   public child: Child;

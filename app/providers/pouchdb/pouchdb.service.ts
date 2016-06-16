@@ -15,7 +15,7 @@ export class PouchDBService {
       this.databases = this.databases.set(name, new PouchDB(name));
 
       console.log("Starting PouchDB syncing...");
-      const remote:string = "http://localhost:5984/test-children";
+      const remote: string = "http://localhost:5984/test-children";
       this.databases.get(name).replicate
         .from(remote, {live: true, retry: true })
         .on("complete", () => console.log("Syncing PouchDB with remote complete"))
@@ -30,13 +30,13 @@ export class PouchDBService {
   }
 
   getChangeObservable(name: string): Observable<PouchDBChange> {
-    if(!this.changeObservables.get(name)) {
+    if (!this.changeObservables.get(name)) {
       const observable = Observable.create((observer) => {
         const pouchChange = this.databases.get(name).changes({
-          since: 'now',
+          since: "now",
           live: true,
           include_docs: true,
-        }).on('change', (change) => {
+        }).on("change", (change) => {
           observer.next(change);
         });
 

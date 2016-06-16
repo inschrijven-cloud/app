@@ -7,7 +7,7 @@ export class Crew {
     this._rev = obj._rev;
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
-    if(obj.address){
+    if (obj.address) {
       this.address = new Address(obj.address);
     }
     this.yearStarted = obj.yearStarted;
@@ -16,7 +16,7 @@ export class Crew {
   }
 
   static type: string = "type/crew/v1";
-  
+
   _id: string;
   _rev: string;
 

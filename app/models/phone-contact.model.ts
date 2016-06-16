@@ -3,7 +3,7 @@ export class PhoneContact {
     this.kind = obj.kind;
     this.phoneNumber = obj.phoneNumber;
   }
-  
+
   kind: string;
   phoneNumber: string;
 }

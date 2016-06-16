@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {PouchDBService} from "../pouchdb/pouchdb.service";
 import IPouchDB = pouchDB.IPouchDB;
 import {Crew} from "../../models/crew.model";
@@ -23,13 +23,15 @@ export class CrewService {
   }
 
   private updateData(): void {
+    // emit wil actually not be provided to the callback, this is done just so typescript doesn't complain
+    const fun = <(doc: any) => void>((row, emit) => {
+      if (row.type === "type/crew/v1") { // can't pass in Crew.type, closures don't work
+        emit(row._id, row);
+      }
+    });
+
     this.db
-      .query(row => {
-        if (row.type === "type/crew/v1") { // can't pass in Crew.type, closures don't work
-          //noinspection TypeScriptUnresolvedFunction
-          emit(row._id, row)
-        }
-      })
+      .query(fun)
       .then(res => res.rows.map(row => new Crew(row.value)))
       .then(res => this.data.next(res))
       .catch(e => console.error(e));

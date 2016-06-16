@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {Injectable} from '@angular/core';
 import {PouchDBService} from "../pouchdb/pouchdb.service";
 import IPouchDB = pouchDB.IPouchDB;
 import {Crew} from "../../models/crew.model";
@@ -21,7 +20,7 @@ export class ChildService {
   }
 
   // TODO remove this method and filter on the side of the component? (using a view or something?)
-  findByName(name: string): BehaviorSubject<Array<Child>> {
+  findByName(name: string): Observable<Array<Child>> {
     name = name || "";
     return this.data.map(rows => rows.filter(row => {
       return (row.firstName + " " + row.lastName).toLowerCase().indexOf(name.toLowerCase()) !== -1;
@@ -33,13 +32,15 @@ export class ChildService {
   }
 
   private updateData(): void {
+    // emit wil actually not be provided to the callback, this is done just so typescript doesn't complain
+    const fun = <((doc: any) => void)>((row, emit) => {
+      if (row.type === "type/child/v1") { // can't pass in Child.type, closures don't work
+        emit(row._id, row);
+      }
+    });
+
     this.db
-      .query(row => {
-        if (row.type === "type/child/v1") { // can't pass in Child.type, closures don't work
-          //noinspection TypeScriptUnresolvedFunction
-          emit(row._id, row)
-        }
-      })
+      .query(fun)
       .then(res => res.rows.map(row => new Crew(row.value)))
       .then(res => this.data.next(res))
       .catch(e => console.error(e));

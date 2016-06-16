@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
 import {CrewService} from "../../providers/crew/crew.service";
-import {CrewDetailsPage} from "../crew-details/crew-details"
+import {CrewDetailsPage} from "../crew-details/crew-details";
 import {Crew} from "../../models/crew.model";
 
 @Component({
-  templateUrl: 'build/pages/crew-list/crew-list.html',
+  templateUrl: "build/pages/crew-list/crew-list.html",
 })
 export class CrewListPage {
   public crew: Array<Crew> = [];
@@ -22,6 +22,6 @@ export class CrewListPage {
   }
 
   crewDetails(person: Crew) {
-    this.navController.push(CrewDetailsPage, { selectedPerson: person })
+    this.navController.push(CrewDetailsPage, { selectedPerson: person });
   }
 }

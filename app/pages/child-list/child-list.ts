@@ -4,6 +4,7 @@ import {NavController} from "ionic-angular/index";
 import {Child} from "../../models/child.model";
 import {ChildDetailsPage} from "../child-details/child-details";
 import {Control} from "@angular/common";
+import {BehaviorSubject} from "rxjs/Rx";
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ChildListPage {
   }
 
   childDetails(child: Child) {
-    this.navController.push(ChildDetailsPage, { selectedChild: child })
+    this.navController.push(ChildDetailsPage, { selectedChild: child });
   }
 
 }

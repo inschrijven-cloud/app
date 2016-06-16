@@ -9,21 +9,21 @@ export class Child {
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
 
-    if(obj.contact) {
+    if (obj.contact) {
       this.contact = new Contact(obj.contact);
     } else {
       this.contact = new Contact();
     }
 
-    if(obj.address) {
+    if (obj.address) {
       this.address = new Address(obj.address);
     } // TODO what if not initialized? Option<...> in TS?
 
     this.birthDate = obj.birthDate;
-    
-    //this.attendances = obj.attendances.map(row => new Attendance(<string>row)) // TODO currently not in DB
+
+    // this.attendances = obj.attendances.map(row => new Attendance(<string>row)) // TODO currently not in DB
   }
-  
+
   static type: string = "type/child/v1";
 
   _id: string;
