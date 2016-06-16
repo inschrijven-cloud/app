@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {PouchDBService} from "../pouchdb/pouchdb.service";
 import IPouchDB = pouchDB.IPouchDB;
-import {Crew} from "../../models/crew.model";
 import {Observable, BehaviorSubject} from "rxjs/Rx";
 import {PouchDBChange} from "../pouchdb/pouchdb-change";
 import {Child} from "../../models/child.model";
@@ -19,14 +18,6 @@ export class ChildService {
     this.changeObservable.subscribe((change) => this.updateData());
   }
 
-  // TODO remove this method and filter on the side of the component? (using a view or something?)
-  findByName(name: string): Observable<Array<Child>> {
-    name = name || "";
-    return this.data.map(rows => rows.filter(row => {
-      return (row.firstName + " " + row.lastName).toLowerCase().indexOf(name.toLowerCase()) !== -1;
-    }));
-  }
-
   getAll(): BehaviorSubject<Array<Child>> {
     return this.data;
   }
@@ -41,7 +32,7 @@ export class ChildService {
 
     this.db
       .query(fun)
-      .then(res => res.rows.map(row => new Crew(row.value)))
+      .then(res => res.rows.map(row => new Child(row.value)))
       .then(res => this.data.next(res))
       .catch(e => console.error(e));
   }

@@ -5,26 +5,18 @@ import {Child} from "../../models/child.model";
 import {ChildDetailsPage} from "../child-details/child-details";
 import {Control} from "@angular/common";
 import {BehaviorSubject} from "rxjs/Rx";
+import {FilterChildrenPipe} from "../../pipes/FilterChildren.pipe";
 
 
 @Component({
   templateUrl: "build/pages/child-list/child-list.html",
+  pipes: [FilterChildrenPipe]
 })
 export class ChildListPage {
-  children: Array<Child> = [];
-  searchQuery: Control = new Control();
+  subject: BehaviorSubject<Array<Child>>;
 
   constructor(private childService: ChildService, private navController: NavController) {
-    this.getItems();
-  }
-
-  getItems() {
-    this.children = this.childService.getAll().getValue();
-
-    this.searchQuery.valueChanges.subscribe(query => {
-      // TODO how to unsubscribe from old childService.findByName subscriptions?
-      this.childService.findByName(query).subscribe(res => this.children = res, (e) => console.error(e));
-    });
+    this.subject = this.childService.getAll();
   }
 
   childDetails(child: Child) {

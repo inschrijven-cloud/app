@@ -2,10 +2,10 @@
   <ion-title>Kinderen</ion-title>
 </ion-navbar>
 
-<ion-searchbar [ngFormControl]="searchQuery"></ion-searchbar>
+<ion-searchbar #searchQuery></ion-searchbar>
 <ion-content padding class="child-list">
   <ion-list>
-    <ion-item *ngFor="let child of children" (click)="childDetails(child)">
+    <ion-item *ngFor="let child of subject | async | filterChildren:searchQuery.value" (click)="childDetails(child)">
       {{ child.firstName }} {{ child.lastName }}
     </ion-item>
   </ion-list>
