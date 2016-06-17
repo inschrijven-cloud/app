@@ -3,7 +3,15 @@ import {Address} from "./address.model";
 import {Attendance} from "./attendance.model";
 
 export class Child {
-  constructor(obj: any) {
+  constructor(obj: {
+    _id: string,
+    _rev: string,
+    firstName: string,
+    lastName: string,
+    contact?: { phone: Array<{ kind: string, phoneNumber: string}>, email: Array<string> },
+    address?: { street: string, number: string, city: string, zipCode: number},
+    birthDate: string
+  }) {
     this._id = obj._id;
     this._rev = obj._rev;
     this.firstName = obj.firstName;
