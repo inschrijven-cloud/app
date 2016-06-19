@@ -34,6 +34,6 @@ export class CrewCreatePage {
       })
       .catch(e => {
         this.navController.present(Toast.create({ message: "Animator kon niet worden opgeslagen" }));
-      })
+      });
   }
 }

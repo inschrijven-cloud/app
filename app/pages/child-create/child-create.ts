@@ -33,6 +33,6 @@ export class ChildCreatePage {
       })
       .catch(e => {
         this.navController.present(Toast.create({ message: "Kind kon niet worden opgeslagen" }));
-      })
+      });
   }
 }
