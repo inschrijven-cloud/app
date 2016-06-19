@@ -1,15 +1,15 @@
 import {Component} from "@angular/core";
 import {Platform, ionicBootstrap} from "ionic-angular";
+import {FORM_PROVIDERS} from "@angular/common";
 import {StatusBar} from "ionic-native";
 import {TabsPage} from "./pages/tabs/tabs";
 import {PouchDBService} from "./providers/pouchdb/pouchdb.service";
 import {ChildService} from "./providers/child-service/child.service";
 import {CrewService} from "./providers/crew/crew.service";
 
-
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`,
-  providers: [PouchDBService, ChildService, CrewService],
+  providers: [FORM_PROVIDERS, PouchDBService, ChildService, CrewService],
 })
 export class MyApp {
 

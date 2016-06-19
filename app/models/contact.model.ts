@@ -7,7 +7,7 @@ export class Contact {
     }
 
     if (obj && obj.email) {
-      this.email = obj.email;
+      this.email = obj.email.filter(x => x !== null && x !== undefined);
     }
   }
 

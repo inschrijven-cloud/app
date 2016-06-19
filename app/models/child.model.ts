@@ -5,11 +5,11 @@ import {Attendance} from "./attendance.model";
 export class Child {
   constructor(obj: {
     _id: string,
-    _rev: string,
+    _rev?: string,
     firstName: string,
     lastName: string,
     contact?: { phone: Array<{ kind: string, phoneNumber: string}>, email: Array<string> },
-    address?: { street: string, number: string, city: string, zipCode: number},
+    address?: { street: string, number: string, city: string, zipCode: number },
     birthDate: string
   }) {
     this._id = obj._id;
@@ -32,7 +32,8 @@ export class Child {
     // this.attendances = obj.attendances.map(row => new Attendance(<string>row)) // TODO currently not in DB
   }
 
-  static type: string = "type/child/v1";
+  static theType = "type/child/v1";
+  type: string = Child.theType; // for persistence
 
   _id: string;
   _rev: string;

@@ -2,6 +2,80 @@
   <ion-title>Nieuw kind aanmaken</ion-title>
 </ion-navbar>
 
-<ion-content padding class="child-create">
-  Create new child
+<ion-content class="child-create">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <ion-item-group>
+      <ion-item-divider light>Naam</ion-item-divider>
+
+      <ion-item>
+        <ion-label stacked>Voornaam</ion-label>
+        <ion-input ngControl="firstName" #firstName="ngForm" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Achternaam</ion-label>
+        <ion-input ngControl="lastName" #lastName="ngForm" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item-divider light>Geboortedatum</ion-item-divider>
+
+      <ion-item>
+        <ion-label stacked>Geboortedatum</ion-label>
+        <ion-datetime ngControl="birthDate" #birthDate="ngForm" displayFormat="DD MMMM YYYY" pickerFormat="DD MMMM YYYY"></ion-datetime>
+      </ion-item>
+
+      <ion-item-divider light>Adres</ion-item-divider>
+
+      <ion-item>
+        <ion-label stacked>Straat</ion-label>
+        <ion-input ngControl="street" #street="ngForm" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Nummer</ion-label>
+        <ion-input ngControl="number" #number="ngForm" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Toevoeging nummer</ion-label>
+        <ion-input ngControl="numberSuffix" #numberSuffix="ngForm" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Postcode</ion-label>
+        <ion-input ngControl="zipCode" #zipCode="ngForm" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Stad of gemeente</ion-label>
+        <ion-input ngControl="city" #city="ngForm" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item-divider light>Contact</ion-item-divider>
+
+      <ion-item>
+        <ion-label stacked>Telefoonnummer</ion-label>
+        <ion-input ngControl="phoneNumber" #phoneNuber="ngForm" type="tel"></ion-input>
+      </ion-item>
+
+      <ion-list radio-group ngControl="phoneKind" #phoneKind="ngForm">
+        <ion-item-divider light>Type telefoonnummer</ion-item-divider>
+
+        <ion-item>
+          <ion-label>Vaste telefoon</ion-label>
+          <ion-radio value="landline"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>GSM</ion-label>
+          <ion-radio value="mobile"></ion-radio>
+        </ion-item>
+      </ion-list>
+
+      <div padding>
+        <button [disabled]="!f.valid" primary block type="submit">Aanmaken</button>
+      </div>
+
+    </ion-item-group>
+  </form>
 </ion-content>

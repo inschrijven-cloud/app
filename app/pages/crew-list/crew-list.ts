@@ -19,7 +19,7 @@ export class CrewListPage {
   }
 
   crewDetails(person: Crew) {
-    this.navController.push(CrewDetailsPage, { selectedPerson: person });
+    this.navController.push(CrewDetailsPage, { selectedPerson: this.crewService.getById(person._id) });
   }
 
   goToCreateCrew() {

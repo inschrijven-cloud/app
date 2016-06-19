@@ -4,7 +4,7 @@ import {Contact} from "./contact.model";
 export class Crew {
   constructor(obj: {
     _id: string,
-    _rev: string,
+    _rev?: string,
     firstName: string,
     lastName: string,
     address?: { street: string, number: string, city: string, zipCode: number},
@@ -24,7 +24,8 @@ export class Crew {
     this.contact = new Contact(obj.contact);
   }
 
-  static type: string = "type/crew/v1";
+  static theType: string = "type/crew/v1";
+  type: string = Crew.theType;
 
   _id: string;
   _rev: string;

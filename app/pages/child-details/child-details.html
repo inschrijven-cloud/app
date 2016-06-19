@@ -1,35 +1,36 @@
 <ion-navbar *navbar>
-  <ion-title *ngIf="child">{{child.firstName}} {{ child.lastName }}</ion-title>
+  <ion-title>{{(child | async)?.firstName}} {{ (child | async)?.lastName }}
+  </ion-title>
 </ion-navbar>
 
-<ion-content padding class="child-details" *ngIf="child">
+<ion-content padding class="child-details">
   <h3>Adres</h3>
-  <p *ngIf="child.address">
-    {{ child.address.street }} {{ child.address.number }}<br/>
-    {{ child.address.zipCode }} {{ child.address.city }}
+  <p *ngIf="(child | async)?.address">
+    {{ (child | async)?.address.street }} {{ (child | async)?.address.number }}<br/>
+    {{ (child | async)?.address.zipCode }} {{ (child | async)?.address.city }}
   </p>
-  <p *ngIf="!child.address">
+  <p *ngIf="!(child | async)?.address">
     <em>Geen adres opgegeven</em>
   </p>
 
   <h3>Contactgegevens</h3>
 
-  <ul *ngIf="child.contact.phone.length !== 0">
-    <li *ngFor="let phoneContact of child.contact.phone">
+  <ul *ngIf="(child | async)?.contact?.phone?.length !== 0 && (child | async)?.contact?.phone?.length !== null">
+    <li *ngFor="let phoneContact of (child | async)?.contact.phone">
       {{ phoneContact.phoneNumber }} ({{ phoneContact.kind }})
     </li>
   </ul>
 
-  <p *ngIf="child.contact.phone.length === 0">
+  <p *ngIf="(child | async)?.contact?.phone?.length === 0 || (child | async)?.contact?.phone?.length === null">
     <em>Geen contactgegevens opgegeven</em>
   </p>
 
   <h3>Geboortedatum</h3>
 
-  <p *ngIf="child.birthDate">
-    {{ child.birthDate }}
+  <p *ngIf="(child | async)?.birthDate">
+    {{ (child | async)?.birthDate }}
   </p>
-  <p *ngIf="!child.birthDate">
+  <p *ngIf="!(child | async)?.birthDate">
     <em>Geen geboortedatum opgegeven</em>
   </p>
 
@@ -44,9 +45,9 @@
 
   <div *ngIf="showDebug">
     <hr/>
-    <pre>_id: {{ child._id }}</pre>
-    <pre>_rev: {{ child._rev }}</pre>
+    <pre>_id: {{ (child | async)?._id }}</pre>
+    <pre>_rev: {{ (child | async)?._rev }}</pre>
+    <a href="http://localhost:5984/_utils/document.html?test-children/{{ (child | async)?._id }}">Open in CouchDB Futon</a>
   </div>
-
 
 </ion-content>

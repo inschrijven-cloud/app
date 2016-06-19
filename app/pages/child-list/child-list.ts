@@ -3,7 +3,7 @@ import {NavController} from "ionic-angular/index";
 import {ChildService} from "../../providers/child-service/child.service";
 import {Child} from "../../models/child.model";
 import {ChildDetailsPage} from "../child-details/child-details";
-import {BehaviorSubject} from "rxjs/Rx";
+import {BehaviorSubject, Observable} from "rxjs/Rx";
 import {FilterChildrenPipe} from "../../pipes/FilterChildren.pipe";
 import {ChildCreatePage} from "../child-create/child-create";
 
@@ -19,7 +19,7 @@ export class ChildListPage {
   }
 
   childDetails(child: Child) {
-    this.navController.push(ChildDetailsPage, { selectedChild: child });
+    this.navController.push(ChildDetailsPage, { selectedChild: this.childService.getById(child._id) });
   }
 
   goToCreateChild() {

@@ -2,8 +2,9 @@ import {Injectable} from "@angular/core";
 import {PouchDBService} from "../pouchdb/pouchdb.service";
 import IPouchDB = pouchDB.IPouchDB;
 import {Crew} from "../../models/crew.model";
-import {Observable, BehaviorSubject} from "rxjs/Rx";
+import {Observable, BehaviorSubject, ReplaySubject} from "rxjs/Rx";
 import {PouchDBChange} from "../pouchdb/pouchdb-change";
+import IOk = pouchDB.Response.IOk;
 
 @Injectable()
 export class CrewService {
@@ -13,13 +14,33 @@ export class CrewService {
 
   constructor(private pouchdbService: PouchDBService) {
     this.db = pouchdbService.getDb("some-db");
-    this.changeObservable = pouchdbService.getChangeObservable("some-db").filter(x => x.doc.type === Crew.type);
+    this.changeObservable = pouchdbService.getChangeObservable("some-db").filter(x => x.doc.type === Crew.theType);
     this.updateData();
     this.changeObservable.subscribe((change) => this.updateData());
   }
 
+  insert(crew: Crew): Promise<IOk> {
+    return this.db.put(crew);
+  }
+
   getAll(): BehaviorSubject<Array<Crew>> {
     return this.data;
+  }
+
+  getById(id: string): ReplaySubject<Crew> {
+    // could also filter this.data
+    // but directly getting by id from the database will provide faster updates
+
+    const res = new ReplaySubject<Crew>(1);
+
+    this.db.get<any>(id).then(row => res.next(new Crew(row))).catch(e => res.error(e));
+
+    this.changeObservable.filter(change => change.id === id).subscribe(
+      (change) => this.db.get<any>(id).then(row => res.next(new Crew(row))).catch(e => res.error(e)),
+      (e) => res.error(e)
+    );
+
+    return res;
   }
 
   private updateData(): void {

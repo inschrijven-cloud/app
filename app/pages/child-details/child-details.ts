@@ -1,12 +1,13 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from "ionic-angular";
 import {Child} from "../../models/child.model";
+import {Observable} from "rxjs/Rx";
 
 @Component({
   templateUrl: "build/pages/child-details/child-details.html",
 })
 export class ChildDetailsPage {
-  public child: Child;
+  public child: Observable<Child>;
   public showDebug: boolean = false;
 
   constructor(private navController: NavController, private navParams: NavParams) {

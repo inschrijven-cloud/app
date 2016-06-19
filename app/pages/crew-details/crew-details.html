@@ -1,14 +1,14 @@
 <ion-navbar *navbar>
-  <ion-title *ngIf="person">{{ person.firstName }} {{ person.lastName }}</ion-title>
+  <ion-title *ngIf="person">{{ (person | async)?.firstName }} {{ (person | async)?.lastName }}</ion-title>
 </ion-navbar>
 
 <ion-content padding class="crew-details" *ngIf="person">
   <h3>Adres</h3>
-  <p *ngIf="person.address">
-    {{ person.address.street }} {{ person.address.number }}<br/>
-    {{ person.address.zipCode }} {{ person.address.city }}
+  <p *ngIf="(person | async)?.address">
+    {{ (person | async)?.address?.street }} {{ (person | async)?.address?.number }}<br/>
+    {{ (person | async)?.address?.zipCode }} {{ (person | async)?.address?.city }}
   </p>
-  <p *ngIf="!person.address">
+  <p *ngIf="!(person | async)?.address">
     <em>Geen adres opgegeven.</em>
   </p>
 
@@ -16,25 +16,25 @@
 
   <h4>Telefoon</h4>
 
-  <ul *ngIf="person.contact.phone.length !== 0">
-    <li *ngFor="let phoneContact of person.contact.phone">
+  <ul *ngIf="(person | async)?.contact?.phone?.length !== 0 && (person | async)?.contact?.phone?.length !== null">
+    <li *ngFor="let phoneContact of (person | async)?.contact?.phone">
       {{ phoneContact.phoneNumber }} ({{ phoneContact.kind }})
     </li>
   </ul>
 
-  <p *ngIf="person.contact.phone.length === 0">
+  <p *ngIf="(person | async)?.contact?.phone?.length === 0">
     <em>Geen telefoongegevens opgegeven.</em>
   </p>
 
   <h4>Email</h4>
 
-  <ul *ngIf="person.contact.email.length !== 0">
-    <li *ngFor="let email of person.contact.email">
+  <ul *ngIf="(person | async)?.contact?.email?.length !== 0 && (person | async)?.contact?.email?.length !== null">
+    <li *ngFor="let email of (person | async).contact.email">
       {{ email }}
     </li>
   </ul>
 
-  <p *ngIf="person.contact.email.length === 0">
+  <p *ngIf="(person | async)?.contact?.email?.length === 0">
     <em>Geen emailgegevens opgegeven.</em>
   </p>
 
@@ -47,9 +47,32 @@
     Extra informatie
   </button>
 
+  <h3>Loonadministratie</h3>
+
+  <h4>Banrekeningnummer</h4>
+
+  <p *ngIf="(person | async)?.bankAccount">
+    {{ (person | async)?.bankAccount }}
+  </p>
+
+  <p *ngIf="!(person | async)?.bankAccount">
+    Geen bankrekeningnummer opgegeven
+  </p>
+
+  <h4>Startjaar</h4>
+
+  <p *ngIf="(person | async)?.yearStarted">
+    {{ (person | async)?.yearStarted }}
+  </p>
+
+  <p *ngIf="!(person | async)?.yearStarted">
+    Geen startjaar opgegeven
+  </p>
+
   <div *ngIf="showDebug">
     <hr/>
-    <pre>_id: {{ person._id }}</pre>
-    <pre>_rev: {{ person._rev }}</pre>
+    <pre>_id: {{ (person | async)?._id }}</pre>
+    <pre>_rev: {{ (person | async)?._rev }}</pre>
+    <a href="http://localhost:5984/_utils/document.html?test-children/{{ (person | async)?._id }}">Open in CouchDB Futon</a>
   </div>
 </ion-content>
