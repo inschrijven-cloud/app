@@ -1,2 +1,4 @@
-# speelsysteem app [![Build Status](https://travis-ci.org/speelsysteem/app.svg?branch=master)](https://travis-ci.org/speelsysteem/app)
+# inschrijven.cloud app [DEPRECATED]
+
+This was an experiment. It was scrapped.
 
